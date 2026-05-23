@@ -42,6 +42,71 @@ A reliable system is one that:
   - Monitor and log system behaviour.
   - Verify invariants (e.g. ensure number of incoming messages == number of outgoing messages).
 
+- **Example:**
+    - **Cascading failure**: One server's slowdown causes others to overload
+
+**Best practices to follow**:
+```python
+# Example: Circuit breaker pattern to prevent cascading failures
+import time
+from enum import Enum
+
+class CircuitState(Enum):
+    CLOSED = "closed"  # Normal operation
+    OPEN = "open"      # Failing, reject requests
+    HALF_OPEN = "half_open"  # Testing if service recovered
+
+class CircuitBreaker:
+    def __init__(self, failure_threshold=5, timeout=60):
+        self.failure_threshold = failure_threshold
+        self.timeout = timeout
+        self.failure_count = 0
+        self.last_failure_time = None
+        self.state = CircuitState.CLOSED
+
+    def call(self, func, *args, **kwargs):
+        if self.state == CircuitState.OPEN:
+            if time.time() - self.last_failure_time > self.timeout:
+                self.state = CircuitState.HALF_OPEN
+            else:
+                raise Exception("Circuit breaker is OPEN")
+
+        try:
+            result = func(*args, **kwargs)
+            self.on_success()
+            return result
+        except Exception as e:
+            self.on_failure()
+            raise e
+
+    def on_success(self):
+        self.failure_count = 0
+        self.state = CircuitState.CLOSED
+
+    def on_failure(self):
+        self.failure_count += 1
+        self.last_failure_time = time.time()
+
+        if self.failure_count >= self.failure_threshold:
+            self.state = CircuitState.OPEN
+
+# Usage
+breaker = CircuitBreaker(failure_threshold=3, timeout=30)
+
+def call_external_service():
+    # Simulated external API call
+    response = requests.get("https://api.example.com/data")
+    return response.json()
+
+try:
+    data = breaker.call(call_external_service)
+except Exception as e:
+    print(f"Service unavailable: {e}")
+```
+
+
+
+
 #### Human Errors
 
 - **Prevention:**
