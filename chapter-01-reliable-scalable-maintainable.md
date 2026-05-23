@@ -122,3 +122,23 @@ except Exception as e:
 ## Scalability
 
 Scalability refers to a system's ability to cope with increased load.
+
+
+#### Describing Load
+- Load can be described with ```load parameters```
+    - LP depends on system architecture
+    - ***Example:** Twitter
+        - Usually 12k requests/sec
+    
+
+- 
+
+#### Describing performance
+
+
+
+#### Approaches for coping with load
+
+
+
+
