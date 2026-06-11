@@ -130,15 +130,67 @@ Scalability refers to a system's ability to cope with increased load.
     - ***Example:** Twitter
         - Usually 12k requests/sec
     
-
-- 
+<!-- Understand Twitter's case study -->
 
 #### Describing performance
+- You can look at it in two ways to test when you increase the load parameter:
+    - While keeping the resources unchanged.
+    - How much increase in resources are needed inorder to maintain the same performance.
+- Metrics used -  ```Throughput``` (Number of records processed per second).
 
+> NOTE: Latency - Duration that a request is waiting to be handled. \
+> NOTE: Response time - is what client sees: it includes netwrok delays.
 
+- Incase when we are measuring the response time we usually prefer ```percentiles``` over mean time.
+
+- ```p50``` Half of the user request were served in less than median time.
+- Inorder to figure out how bad your outliers are you can look at higher percentiles (```p50```, ```p95```, ```p999```)
+
+- Percentials are often used in Service Level Objective (SLOs) or Service level Agreements(SLAs).
+
+- ```head-of-line-blocking``` - Sometimes the tasks hold up to some prcessing of subsequent requests that causes delay 
+
+> It is IMPORTANT to measure response time at client side as well.
 
 #### Approaches for coping with load
+- Distributing load across multiple machines is also
+known as a ```shared nothing architecture```.
+- Some systems are ````elastic```, meaning that they can automatically add computing resour
+ces when they detect a load increase,
 
+-While distributing stateless services across multiple machines is fairly straightfor
+ward, taking stateful data systems from a single node to a distributed setup can intro
+duce a lot of additional complexity.
 
+> In an early-stage startup or an
+unproven product it’s usually more important to be able to iterate quickly on product
+features, than it is to scale to some hypothetical future load.
 
+## Maintainabilty
+-  the majority of the cost of software is not in its initial develop ment, but in its ongoing maintenance 
+    - fixing bugs, keeping its systems operational
+    - investigating failures
+    - adapting it to new platforms
+    - modifying it for new use cases
+    - repaying technical debt, and adding new features.
 
+we will pay particular attention to three design principles for software sys
+tems
+
+#### Operability
+- Monitoring
+- Tracking down cause of problems 
+- Keeping software and platform up-to-date
+- Maintaining security
+- Preserving the organization's knowledge about the system
+<!-- Write more technically dense, in your own language -->
+
+#### Simplicity
+- As the product get larger the software becomes more tightly coupled and challenging to comprehend
+- This directly impacts to productivity of engineers who are working on it
+- Making a system simpler does not necessarily mean reducing its functionality; it can also mean removing accidental complexity.
+- ```Abstraction``` one of the best ways to remove complexity from code
+
+#### Evolvability
+-  ```Agile``` working patterns provide a framework for adapting to change
+- ```Test-driven development (TDD)``` 
