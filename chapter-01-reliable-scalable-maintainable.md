@@ -133,11 +133,46 @@ Scalability refers to a system's ability to cope with increased load.
 <!-- Understand Twitter's case study -->
 
 #### Describing performance
+- You can look at it in two ways to test when you increase the load parameter:
+    - While keeping the resources unchanged.
+    - How much increase in resources are needed inorder to maintain the same performance.
+- Metrics used -  ```Throughput``` (Number of records processed per second).
 
+> NOTE: Latency - Duration that a request is waiting to be handled. \
+> NOTE: Response time - is what client sees: it includes netwrok delays.
 
+- Incase when we are measuring the response time we usually prefer ```percentiles``` over mean time.
+
+- ```p50``` Half of the user request were served in less than median time.
+- Inorder to figure out how bad your outliers are you can look at higher percentiles (```p50```, ```p95```, ```p999```)
+
+- Percentials are often used in Service Level Objective (SLOs) or Service level Agreements(SLAs).
+
+- ```head-of-line-blocking``` - Sometimes the tasks hold up to some prcessing of subsequent requests that causes delay 
+
+> It is IMPORTANT to measure response time at client side as well.
 
 #### Approaches for coping with load
+- Distributing load across multiple machines is also
+known as a ```shared nothing architecture```.
+- Some systems are ````elastic```, meaning that they can automatically add computing resour
+ces when they detect a load increase,
 
+-While distributing stateless services across multiple machines is fairly straightfor
+ward, taking stateful data systems from a single node to a distributed setup can intro
+duce a lot of additional complexity.
+
+> In an early-stage startup or an
+unproven product it’s usually more important to be able to iterate quickly on product
+features, than it is to scale to some hypothetical future load.
+
+## Maintainabilty
+
+#### Operability
+
+#### Simplicity
+
+#### Evolvability
 
 
 
