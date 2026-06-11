@@ -130,8 +130,7 @@ Scalability refers to a system's ability to cope with increased load.
     - ***Example:** Twitter
         - Usually 12k requests/sec
     
-
-- 
+<!-- Understand Twitter's case study -->
 
 #### Describing performance
 
