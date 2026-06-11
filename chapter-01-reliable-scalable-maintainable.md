@@ -167,12 +167,30 @@ unproven product it’s usually more important to be able to iterate quickly on 
 features, than it is to scale to some hypothetical future load.
 
 ## Maintainabilty
+-  the majority of the cost of software is not in its initial develop ment, but in its ongoing maintenance 
+    - fixing bugs, keeping its systems operational
+    - investigating failures
+    - adapting it to new platforms
+    - modifying it for new use cases
+    - repaying technical debt, and adding new features.
+
+we will pay particular attention to three design principles for software sys
+tems
 
 #### Operability
+- Monitoring
+- Tracking down cause of problems 
+- Keeping software and platform up-to-date
+- Maintaining security
+- Preserving the organization's knowledge about the system
+<!-- Write more technically dense, in your own language -->
 
 #### Simplicity
+- As the product get larger the software becomes more tightly coupled and challenging to comprehend
+- This directly impacts to productivity of engineers who are working on it
+- Making a system simpler does not necessarily mean reducing its functionality; it can also mean removing accidental complexity.
+- ```Abstraction``` one of the best ways to remove complexity from code
 
 #### Evolvability
-
-
-
+-  ```Agile``` working patterns provide a framework for adapting to change
+- ```Test-driven development (TDD)``` 
